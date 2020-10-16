@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Apple_Mine_Seeker</string>
+    <string name="app_name">Apple Mine Seeker</string>
+    <string name="skip">SKIP</string>
+    <string name="author">By: Austin Kwan</string>
 </resources>
