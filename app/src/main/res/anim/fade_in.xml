@@ -1,0 +1,11 @@
+<!-- Sample XML Code taken from https://www.journaldev.com/9481/android-animation-example -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillAfter="true" >
+
+    <alpha
+        android:duration="3000"
+        android:fromAlpha="0.0"
+        android:interpolator="@android:anim/accelerate_interpolator"
+        android:toAlpha="1.0" />
+
+</set>

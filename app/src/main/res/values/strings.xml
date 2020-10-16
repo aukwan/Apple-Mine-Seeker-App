@@ -2,4 +2,5 @@
     <string name="app_name">Apple Mine Seeker</string>
     <string name="skip">SKIP</string>
     <string name="author">By: Austin Kwan</string>
+    <string name="ignoreContentDescript">tools:ignore=ContentDescription</string>
 </resources>
