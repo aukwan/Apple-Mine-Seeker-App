@@ -64,7 +64,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                // Sample handler code from Stack Overflow: https://stackoverflow.com/a/29148136
+                // Handler code from Stack Overflow: https://stackoverflow.com/a/29148136
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

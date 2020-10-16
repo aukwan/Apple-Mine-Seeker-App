@@ -2,5 +2,17 @@
     <string name="app_name">Apple Mine Seeker</string>
     <string name="skip">SKIP</string>
     <string name="author">By: Austin Kwan</string>
-    <string name="ignoreContentDescript">tools:ignore=ContentDescription</string>
+    <string name="ignoreContentDescription">tools:ignore=ContentDescription</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="play_game">Play game</string>
+    <string name="help">Help</string>
+    <string name="options">Options</string>
+    <string name="helpText">About Author :
+        \nAustin Kwan is a SFU <a href="https://opencoursehub.cs.sfu.ca/jackt/grav-cms/cmpt276-2/home">CMPT 276</a> student.
+        \n\nHow to play:
+        \nA mysterious basket of apples is delivered to you for free; it contains a note explaining that there are apples with mines mixed in with the regular apples. Being \u0020the smart and intelligent person that you are, you decide to find all the apples with \u0020mines with your latest and greatest scanner using the least number of scans. Scanning a regular apple reveals the number of mine apples in the same row and column.
+        \nScanning an apple that has a mine reveals that it is indeed a mine apple.
+        \n\n <a href="https://iconscout.com/icon/apple-fruit-food-vitamin-healthy">Apple Icon</a>
+        \n <a href="https://thenounproject.com/term/mine/915944/">Mine Icon</a>
+        \n <a href="https://www.needpix.com/photo/download/1183840/basket-fibers-basket-texture-braid-background-woven-structure-natural-material-wicker">Basket Background</a></string>
 </resources>
