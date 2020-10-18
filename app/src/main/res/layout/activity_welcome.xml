@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/basket_background_dark"
+    android:background="@drawable/basket_background_darker"
     tools:context=".ui.WelcomeActivity" >
 
     <Button
@@ -22,8 +22,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="376dp"
-        android:layout_height="44dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:fontFamily="casual"
         android:text="@string/app_name"
@@ -40,8 +40,8 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="181dp"
-        android:layout_height="31dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="24dp"
         android:fontFamily="casual"
