@@ -1,7 +1,5 @@
 package ca.sfu.cmpt276.apple_mine_seeker.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +7,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import ca.sfu.cmpt276.apple_mine_seeker.R;
 import ca.sfu.cmpt276.apple_mine_seeker.model.Game;
@@ -53,7 +53,7 @@ public class MainMenuActivity extends AppCompatActivity {
         optionsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), OptionsActivity.class);
+                Intent intent = OptionsActivity.makeIntent(MainMenuActivity.this);
                 startActivity(intent);
             }
         });
