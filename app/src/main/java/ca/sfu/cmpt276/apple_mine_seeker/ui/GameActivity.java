@@ -32,17 +32,18 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        resetValues();
+        resetValuesForMinesFoundAndScansUsed();
         populateButtons();
         placeMines();
         setupTextViews();
     }
 
-    private void resetValues() {
+    private void resetValuesForMinesFoundAndScansUsed() {
         game.setMinesFound(0);
         game.setNumScansUsed(0);
     }
 
+    // Populate table of buttons with images and text
     private void populateButtons() {
         TableLayout table = findViewById(R.id.tableForButtons);
 
@@ -94,16 +95,16 @@ public class GameActivity extends AppCompatActivity {
     private void setupTextViews() {
         TextView scansUsed = findViewById(R.id.scansUsed);
         String numScansUsed = Integer.toString(game.getNumScansUsed());
-        scansUsed.setText("# Scans used: " + numScansUsed);
+        scansUsed.setText(getString(R.string.num_scans) + numScansUsed);
 
         TextView minesFound = findViewById(R.id.minesFound);
         String totalMines = Integer.toString(game.getNumMines());
         String numMinesFound = Integer.toString(game.getMinesFound());
-        minesFound.setText("Found " + numMinesFound + " of " + totalMines + " Mines");
+        minesFound.setText(getString(R.string.found) + numMinesFound + getString(R.string.of) + totalMines + getString(R.string.mines_2));
 
         TextView gamesPlayed = findViewById(R.id.gamesPlayed);
         String numGamesPlayed = Integer.toString(game.getTotalGames());
-        gamesPlayed.setText("Times Played: " + numGamesPlayed);
+        gamesPlayed.setText(getString(R.string.times_played) + numGamesPlayed);
     }
 
     private void placeMines() {
@@ -130,7 +131,7 @@ public class GameActivity extends AppCompatActivity {
     private void scanRowAndColAtPoint(int currCol, int currRow) {
         TextView scansUsed = findViewById(R.id.scansUsed);
         String numScansUsed = Integer.toString(game.getNumScansUsed());
-        scansUsed.setText("# Scans used: " + numScansUsed);
+        scansUsed.setText(getString(R.string.num_scans) + numScansUsed);
         Button button = buttons[currRow][currCol];
 
         lockButtonSizes();
@@ -141,7 +142,7 @@ public class GameActivity extends AppCompatActivity {
             button.setText("");
             TextView minesFound = findViewById(R.id.minesFound);
             String numMinesFound = Integer.toString(game.getMinesFound());
-            minesFound.setText("Found " + numMinesFound + " of " + totalMines + " Mines");
+            minesFound.setText(getString(R.string.found) + numMinesFound + getString(R.string.of) + totalMines + getString(R.string.mines_2));
 
             // Update revealed cells' number of hidden mines in same row and column
             for (int row = 0; row < gameRows; row++) {
