@@ -1,4 +1,5 @@
 Optional Features:
-- Welcome Screen animations and automatically advancing to Main Menu after 4s
+- Two different Welcome Screen animations
+- Welcome Screen automatically advances to Main Menu after 4s
 - Display number of games played
--
+- Display best score for each individual config

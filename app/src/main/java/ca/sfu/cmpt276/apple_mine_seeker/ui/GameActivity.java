@@ -1,5 +1,6 @@
 package ca.sfu.cmpt276.apple_mine_seeker.ui;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        retrieveNumGamesAndScores();
         resetValuesForMinesFoundAndScansUsed();
         populateButtons();
         placeMines();
@@ -213,6 +215,7 @@ public class GameActivity extends AppCompatActivity {
     // Checks if all mines have been found. If all found, congratulate player.
     private void isGameOver() {
         if (game.getMinesFound() == game.getNumMines()) {
+            game.increaseTotalGames();
             // Update all scan to show 0, as there are no more hidden mines
             for (int row = 0; row < gameRows; row++) {
                 for (int col = 0; col < gameCols; col++) {
@@ -221,10 +224,184 @@ public class GameActivity extends AppCompatActivity {
                     }
                 }
             }
+            // Save game score and games played
+            int score = game.getNumScansUsed();
+            setBestScore(score);
+
+            saveScoreAndScans();
+
             // Display congratulations dialog
             FragmentManager manager = getSupportFragmentManager();
             MessageFragment dialog = new MessageFragment();
             dialog.show(manager, "MessageDialog");
         }
+    }
+
+
+    // Save high scores and number of games played through SharedPreferences
+    private void saveScoreAndScans() {
+        SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("Times Played", game.getTotalGames());
+        // Code found at https://stackoverflow.com/questions/7175880/how-can-i-store-an-integer-array-in-sharedpreferences
+        StringBuilder str = new StringBuilder();
+        int bestScoresLength = game.getBestScores().length;
+        for (int bestScore = 0; bestScore < bestScoresLength; bestScore++) {
+            str.append(game.getBestScoreByConfigIndex(bestScore)).append(",");
+        }
+        editor.putString("Best Scores", str.toString());
+        editor.apply();
+    }
+
+    public void retrieveNumGamesAndScores() {
+        SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        int numGames = prefs.getInt("Times Played", 0);
+        // Code found at https://stackoverflow.com/questions/7175880/how-can-i-store-an-integer-array-in-sharedpreferences
+        String bestScoresString = prefs.getString("Best Scores", "");
+        if (!bestScoresString.equals("")) {
+            String[] bestScoresSplit = bestScoresString.split("\\,");
+
+            for (int i = 0; i < 12; i++) {
+                game.setBestScoreByConfigIndex(i, Integer.parseInt(bestScoresSplit[i]));
+            }
+        }
+
+        game.setTotalGames(numGames);
+        int bestScoreByConfigIndex = 0;
+        bestScoreByConfigIndex = getBestScoreByConfigIndex(bestScoreByConfigIndex);
+
+        TextView highScoreForConfig = findViewById(R.id.bestScore);
+        highScoreForConfig.setText(getString(R.string.best_score_for)
+                + gameRows + getString(R.string.rows_by) + gameCols + getString(R.string.columns)
+                + game.getBestScoreByConfigIndex(bestScoreByConfigIndex));
+
+        TextView totalGames = findViewById(R.id.gamesPlayed);
+        totalGames.setText(getString(R.string.times_played) + numGames);
+    }
+
+    private void setBestScore(int score) {
+        // 4 rows by 6 columns with 6 mines
+        if (gameRows == 4 && gameCols == 6 && totalMines == 6) {
+            if (score < game.getBestScoreByConfigIndex(0)) {
+                game.setBestScoreByConfigIndex(0, score);
+            }
+        }
+        // 4 rows by 6 columns with 10 mines
+        if (gameRows == 4 && gameCols == 6 && totalMines == 10) {
+            if (score < game.getBestScoreByConfigIndex(1)) {
+                game.setBestScoreByConfigIndex(1, score);
+            }
+        }
+        // 4 rows by 6 columns with 15 mines
+        if (gameRows == 4 && gameCols == 6 && totalMines == 15) {
+            if (score < game.getBestScoreByConfigIndex(2)) {
+                game.setBestScoreByConfigIndex(2, score);
+            }
+        }
+        // 4 rows by 6 columns with 20 mines
+        if (gameRows == 4 && gameCols == 6 && totalMines == 20) {
+            if (score < game.getBestScoreByConfigIndex(3)) {
+                game.setBestScoreByConfigIndex(3, score);
+            }
+        }
+        // 5 rows by 10 columns with 6 mines
+        if (gameRows == 5 && gameCols == 10 && totalMines == 6) {
+            if (score < game.getBestScoreByConfigIndex(4)) {
+                game.setBestScoreByConfigIndex(4, score);
+            }
+        }
+        // 5 rows by 10 columns with 10 mines
+        if (gameRows == 5 && gameCols == 10 && totalMines == 10) {
+            if (score < game.getBestScoreByConfigIndex(5)) {
+                game.setBestScoreByConfigIndex(5, score);
+            }
+        }
+        // 5 rows by 10 columns with 15 mines
+        if (gameRows == 5 && gameCols == 10 && totalMines == 15) {
+            if (score < game.getBestScoreByConfigIndex(6)) {
+                game.setBestScoreByConfigIndex(6, score);
+            }
+        }
+        // 5 rows by 10 columns with 20 mines
+        if (gameRows == 5 && gameCols == 10 && totalMines == 20) {
+            if (score < game.getBestScoreByConfigIndex(7)) {
+                game.setBestScoreByConfigIndex(7, score);
+            }
+        }
+        // 6 rows by 15 columns with 6 mines
+        if (gameRows == 6 && gameCols == 15 && totalMines == 6) {
+            if (score < game.getBestScoreByConfigIndex(8)) {
+                game.setBestScoreByConfigIndex(8, score);
+            }
+        }
+        // 6 rows by 15 columns with 10 mines
+        if (gameRows == 6 && gameCols == 15 && totalMines == 10) {
+            if (score < game.getBestScoreByConfigIndex(9)) {
+                game.setBestScoreByConfigIndex(9, score);
+            }
+        }
+        // 6 rows by 15 columns with 15 mines
+        if (gameRows == 6 && gameCols == 15 && totalMines == 15) {
+            if (score < game.getBestScoreByConfigIndex(10)) {
+                game.setBestScoreByConfigIndex(10, score);
+            }
+        }
+        // 6 rows by 15 columns with 20 mines
+        if (gameRows == 6 && gameCols == 15 && totalMines == 20) {
+            if (score < game.getBestScoreByConfigIndex(11)) {
+                game.setBestScoreByConfigIndex(11, score);
+            }
+        }
+    }
+
+    private int getBestScoreByConfigIndex(int bestScoreByConfigIndex) {
+        if (gameRows == 4 && gameCols == 6 && totalMines == 6) {
+            bestScoreByConfigIndex = 0;
+        }
+        // 4 rows by 6 columns with 10 mines
+        if (gameRows == 4 && gameCols == 6 && totalMines == 10) {
+            bestScoreByConfigIndex = 1;
+        }
+        // 4 rows by 6 columns with 15 mines
+        if (gameRows == 4 && gameCols == 6 && totalMines == 15) {
+            bestScoreByConfigIndex = 2;
+        }
+        // 4 rows by 6 columns with 20 mines
+        if (gameRows == 4 && gameCols == 6 && totalMines == 20) {
+            bestScoreByConfigIndex = 3;
+        }
+        // 5 rows by 10 columns with 6 mines
+        if (gameRows == 5 && gameCols == 10 && totalMines == 6) {
+            bestScoreByConfigIndex = 4;
+        }
+        // 5 rows by 10 columns with 10 mines
+        if (gameRows == 5 && gameCols == 10 && totalMines == 10) {
+            bestScoreByConfigIndex = 5;
+        }
+        // 5 rows by 10 columns with 15 mines
+        if (gameRows == 5 && gameCols == 10 && totalMines == 15) {
+            bestScoreByConfigIndex = 6;
+        }
+        // 5 rows by 10 columns with 20 mines
+        if (gameRows == 5 && gameCols == 10 && totalMines == 20) {
+            bestScoreByConfigIndex = 7;
+        }
+        // 6 rows by 15 columns with 6 mines
+        if (gameRows == 6 && gameCols == 15 && totalMines == 6) {
+            bestScoreByConfigIndex = 8;
+        }
+        // 6 rows by 15 columns with 10 mines
+        if (gameRows == 6 && gameCols == 15 && totalMines == 10) {
+            bestScoreByConfigIndex = 9;
+        }
+        // 6 rows by 15 columns with 15 mines
+        if (gameRows == 6 && gameCols == 15 && totalMines == 15) {
+            bestScoreByConfigIndex = 10;
+        }
+        // 6 rows by 15 columns with 20 mines
+        if (gameRows == 6 && gameCols == 15 && totalMines == 20) {
+            bestScoreByConfigIndex = 11;
+        }
+        return bestScoreByConfigIndex;
     }
 }

@@ -31,4 +31,7 @@
     <string name="number_of_mines">Number of Mines :</string>
     <string name="board_size">Board Size :</string>
     <string name="selected">\ selected</string>
+    <string name="best_score_for">Best Score(\</string>
+    <string name="rows_by">\ rows by \</string>
+    <string name="columns">\ columns): \</string>
 </resources>

@@ -29,6 +29,8 @@ public class OptionsActivity extends AppCompatActivity {
         createRadioButtons();
     }
 
+
+
     private void createRadioButtons() {
         RadioGroup boardSizeGroup = findViewById(R.id.boardSize);
         RadioGroup numMinesGroup = findViewById(R.id.numMines);
@@ -97,6 +99,7 @@ public class OptionsActivity extends AppCompatActivity {
                     if (boardSize.equals("4 rows by 6 columns")) {
                         game.setNumRows(4);
                         game.setNumCols(6);
+
                     } else if (boardSize.equals("5 rows by 10 columns")) {
                         game.setNumRows(5);
                         game.setNumCols(10);
