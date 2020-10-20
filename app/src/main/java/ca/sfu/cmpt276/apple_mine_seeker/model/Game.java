@@ -13,7 +13,7 @@ public class Game {
     private int totalGames = 0;
 
     // Array of size 12 for 12 possible configurations
-    private int[] highScores = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private int[] bestScores = {9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999};
 
     public int getNumMines() {
         return numMines;
@@ -75,12 +75,20 @@ public class Game {
         this.totalGames++;
     }
 
-    public int getHighScoreByConfigIndex(int index) {
-        return highScores[index];
+    public int[] getBestScores() {
+        return bestScores;
     }
 
-    public void setHighScoreByConfigIndex(int index, int score) {
-        this.highScores[index] = score;
+    public void setBestScores(int[] bestScores) {
+        this.bestScores = bestScores;
+    }
+
+    public int getBestScoreByConfigIndex(int index) {
+        return bestScores[index];
+    }
+
+    public void setBestScoreByConfigIndex(int index, int score) {
+        bestScores[index] = score;
     }
 
     // Singleton Support
