@@ -11,12 +11,12 @@
         \nAustin Kwan is a SFU <a href="https://opencoursehub.cs.sfu.ca/jackt/grav-cms/cmpt276-2/home">CMPT 276</a> student.
         \n\nHow to play:
         \nA mysterious basket of apples is delivered to you for free; it contains a note explaining that there are apples with mines mixed in with the regular apples. Being \u0020the smart and intelligent person that you are, you decide to find all the apples with \u0020mines with your latest and greatest scanner using the least number of scans.
-        \nScanning a regular apple reveals the number of mine apples in the same row and column.
-        \nScanning an apple that has a mine reveals that it is indeed a mine apple.
+        \nTapping on an apple checks if it has a mine or not. If it does not have a mine, it scans for mines in the same row and column. An apple with a mine can be scanned for other mines as well.
         \n\n <a href="https://iconscout.com/icon/apple-fruit-food-vitamin-healthy">Apple Icon</a>
         \n <a href="https://thenounproject.com/term/mine/915944/">Mine Icon</a>
         \n <a href="https://www.needpix.com/photo/download/1183840/basket-fibers-basket-texture-braid-background-woven-structure-natural-material-wicker">Basket Background</a>
-        \n <a href="https://www.flaticon.com/free-icon/fireworks_256665">Firework Icon</a></string>
+        \n <a href="https://www.flaticon.com/free-icon/fireworks_256665">Firework Icon</a>
+        \n <a href="http://198.211.103.19/~nebomusic/media/">Sound Effects</a></string>
     <string name="win_message">Congratulations! You Won!</string>
     <string name="game_over">Game Over</string>
     <string name="ok_button">OK</string>

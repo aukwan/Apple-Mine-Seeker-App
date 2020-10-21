@@ -3,7 +3,10 @@ package ca.sfu.cmpt276.apple_mine_seeker.ui;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -28,16 +31,27 @@ public class GameActivity extends AppCompatActivity {
     private boolean[][] hasMine = new boolean[gameRows][gameCols];
     Button[][] buttons = new Button[gameRows][gameCols];
 
+    // Code found at https://nebomusic.net/androidlessons/Starting_the_Sounds_App.pdf
+    private MediaPlayer[] soundPlayer = new MediaPlayer[2];
+    private int[] soundResources = {R.raw.scan, R.raw.mine};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        initializeMediaPlayer();
         retrieveNumGamesAndScores();
         resetValuesForMinesFoundAndScansUsed();
         populateButtons();
         placeMines();
         setupTextViews();
+    }
+
+    private void initializeMediaPlayer() {
+        for (int i = 0; i < soundPlayer.length; i++) {
+            soundPlayer[i] = MediaPlayer.create(this, soundResources[i]);
+        }
     }
 
     private void resetValuesForMinesFoundAndScansUsed() {
@@ -77,7 +91,7 @@ public class GameActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         if (!beenScanned) {
-                            scanRowAndColAtPoint(FINAL_COL, FINAL_ROW);
+                            scanRowAndColAtPoint(FINAL_ROW, FINAL_COL);
                             beenScanned = true;
                             // Allows for a revealed mine to be scanned for other hidden mines
                             if (hasMine[FINAL_ROW][FINAL_COL]) {
@@ -130,7 +144,7 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void scanRowAndColAtPoint(int currCol, int currRow) {
+    private void scanRowAndColAtPoint(int currRow, int currCol) {
         TextView scansUsed = findViewById(R.id.scansUsed);
         String numScansUsed = Integer.toString(game.getNumScansUsed());
         scansUsed.setText(getString(R.string.num_scans) + numScansUsed);
@@ -140,6 +154,8 @@ public class GameActivity extends AppCompatActivity {
         // Reveals a mine if one is present
         if (hasMine[currRow][currCol]) {
             game.foundMine();
+            soundPlayer[1].start();
+            vibrate(100);
             button.setBackgroundResource(R.drawable.mine_apple);
             button.setText("");
             TextView minesFound = findViewById(R.id.minesFound);
@@ -170,6 +186,8 @@ public class GameActivity extends AppCompatActivity {
         // Performs a scan, revealing number of hidden mines in same row and column
         } else {
             game.scan();
+            soundPlayer[0].start();
+            vibrate(400);
             int minesHiddenInRowAndCol = 0;
 
             for (int row = 0; row < gameRows; row++) {
@@ -403,5 +421,9 @@ public class GameActivity extends AppCompatActivity {
             bestScoreByConfigIndex = 11;
         }
         return bestScoreByConfigIndex;
+    }
+
+    private void vibrate(int time) {
+        ((Vibrator) getSystemService(VIBRATOR_SERVICE)).vibrate(VibrationEffect.createOneShot(time, VibrationEffect.DEFAULT_AMPLITUDE));
     }
 }

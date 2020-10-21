@@ -79,10 +79,6 @@ public class Game {
         return bestScores;
     }
 
-    public void setBestScores(int[] bestScores) {
-        this.bestScores = bestScores;
-    }
-
     public int getBestScoreByConfigIndex(int index) {
         return bestScores[index];
     }
