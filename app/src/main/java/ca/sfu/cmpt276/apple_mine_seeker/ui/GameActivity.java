@@ -21,6 +21,10 @@ import java.util.Random;
 import ca.sfu.cmpt276.apple_mine_seeker.R;
 import ca.sfu.cmpt276.apple_mine_seeker.model.Game;
 
+/*
+ Game Activity screen where the user spends the most of the time on.
+ */
+
 public class GameActivity extends AppCompatActivity {
 
     private Game game = Game.getInstance();
@@ -423,7 +427,8 @@ public class GameActivity extends AppCompatActivity {
         return bestScoreByConfigIndex;
     }
 
-    private void vibrate(int time) {
-        ((Vibrator) getSystemService(VIBRATOR_SERVICE)).vibrate(VibrationEffect.createOneShot(time, VibrationEffect.DEFAULT_AMPLITUDE));
+    // Vibrate device on button click
+    private void vibrate(int duration) {
+        ((Vibrator) getSystemService(VIBRATOR_SERVICE)).vibrate(VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE));
     }
 }

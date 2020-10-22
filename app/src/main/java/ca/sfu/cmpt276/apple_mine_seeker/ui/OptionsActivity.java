@@ -16,6 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import ca.sfu.cmpt276.apple_mine_seeker.R;
 import ca.sfu.cmpt276.apple_mine_seeker.model.Game;
 
+/*
+ Options Activity screen allows for user to change the board size and number of hidden mines.
+ */
+
 public class OptionsActivity extends AppCompatActivity {
 
     private Game game;
@@ -28,8 +32,6 @@ public class OptionsActivity extends AppCompatActivity {
         game = Game.getInstance();
         createRadioButtons();
     }
-
-
 
     private void createRadioButtons() {
         RadioGroup boardSizeGroup = findViewById(R.id.boardSize);
@@ -44,6 +46,7 @@ public class OptionsActivity extends AppCompatActivity {
         int[] num_mines = getResources().getIntArray(R.array.num_mines);
         String[] board_size = getResources().getStringArray(R.array.board_size);
 
+        // Configure mine options
         for (final int numMines : num_mines) {
             RadioButton button = new RadioButton(this);
             button.setText(numMines + getString(R.string.mines));
@@ -68,10 +71,10 @@ public class OptionsActivity extends AppCompatActivity {
                     game.setNumMines(numMines);
                 }
             });
-
             numMinesGroup.addView(button);
         }
 
+        // Configure board size
         for (final String boardSize : board_size) {
             RadioButton button = new RadioButton(this);
             button.setText(boardSize);
@@ -105,7 +108,6 @@ public class OptionsActivity extends AppCompatActivity {
 
                 }
             });
-
             boardSizeGroup.addView(button);
         }
     }

@@ -13,6 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import ca.sfu.cmpt276.apple_mine_seeker.R;
 import ca.sfu.cmpt276.apple_mine_seeker.model.Game;
 
+/*
+  Main Menu Activity screen, allow for user to start game, access options, or go to help screen
+ */
+
 public class MainMenuActivity extends AppCompatActivity {
 
     Button startGameBtn;

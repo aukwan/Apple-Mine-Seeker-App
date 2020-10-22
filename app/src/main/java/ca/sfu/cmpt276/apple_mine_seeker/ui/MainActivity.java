@@ -1,10 +1,14 @@
 package ca.sfu.cmpt276.apple_mine_seeker.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import ca.sfu.cmpt276.apple_mine_seeker.R;
+
+/*
+ Main Activity used to launch app
+ */
 
 public class MainActivity extends AppCompatActivity {
 

@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import ca.sfu.cmpt276.apple_mine_seeker.R;
 
+// Congratulations message fragment when the user wins (finds all the mines)
+
 public class MessageFragment extends AppCompatDialogFragment {
 
     @Override

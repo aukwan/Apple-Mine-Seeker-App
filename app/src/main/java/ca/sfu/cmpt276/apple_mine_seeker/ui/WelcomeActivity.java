@@ -1,7 +1,5 @@
 package ca.sfu.cmpt276.apple_mine_seeker.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,7 +9,13 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import ca.sfu.cmpt276.apple_mine_seeker.R;
+
+/*
+ Welcome Activity screen, comes up when the app is launched.
+ */
 
 public class WelcomeActivity extends AppCompatActivity {
 
